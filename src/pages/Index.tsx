@@ -1,23 +1,11 @@
 
-import React, { Suspense } from "react";
+import React from "react";
 import Header from "@/components/Header";
 import LessonCard from "@/components/LessonCard";
 import { useLessons } from "@/App";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useIsMobile } from "@/hooks/use-mobile";
-
-// Card skeleton loader
-const LessonCardSkeleton = () => (
-  <div className="h-full">
-    <Skeleton className="h-48 w-full mb-4" />
-    <Skeleton className="h-6 w-3/4 mb-2" />
-    <Skeleton className="h-4 w-1/2" />
-  </div>
-);
 
 const Index = () => {
   const { lessons } = useLessons();
-  const isMobile = useIsMobile();
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -31,15 +19,9 @@ const Index = () => {
           </p>
         </div>
         
-        <div className={`grid gap-6 ${
-          isMobile 
-            ? "grid-cols-1" 
-            : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-        }`}>
+        <div className="lesson-grid">
           {lessons.map((lesson) => (
-            <Suspense key={lesson.id} fallback={<LessonCardSkeleton />}>
-              <LessonCard lesson={lesson} />
-            </Suspense>
+            <LessonCard key={lesson.id} lesson={lesson} />
           ))}
         </div>
       </main>

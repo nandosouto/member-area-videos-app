@@ -1,108 +1,131 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 190 20% 97%;
+    --foreground: 190 50% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 190 50% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 190 50% 10%;
+
+    --primary: 190 65% 34%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 190 40% 96%;
+    --secondary-foreground: 190 65% 34%;
+
+    --muted: 190 10% 90%;
+    --muted-foreground: 190 10% 40%;
+
+    --accent: 190 20% 90%;
+    --accent-foreground: 190 65% 34%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 190 65% 34%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .dark {
+    --background: 190 50% 10%;
+    --foreground: 190 20% 90%;
+
+    --card: 190 40% 15%;
+    --card-foreground: 190 20% 90%;
+
+    --popover: 190 40% 15%;
+    --popover-foreground: 190 20% 90%;
+
+    --primary: 190 60% 50%;
+    --primary-foreground: 190 10% 10%;
+
+    --secondary: 190 30% 20%;
+    --secondary-foreground: 190 20% 90%;
+
+    --muted: 190 30% 20%;
+    --muted-foreground: 190 10% 70%;
+
+    --accent: 190 30% 30%;
+    --accent-foreground: 190 20% 90%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 190 20% 90%;
+
+    --border: 190 30% 20%;
+    --input: 190 30% 20%;
+    --ring: 190 60% 50%;
+    
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@layer base {
+  * {
+    @apply border-border;
   }
-}
 
-.card {
-  padding: 2em;
-}
+  body {
+    @apply bg-background text-foreground font-['Inter',sans-serif];
+  }
 
-.read-the-docs {
-  color: #888;
-}
+  .lesson-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
 
-/* Otimização de carregamento de imagens */
-img {
-  transition: opacity 0.3s ease-in-out;
-}
-
-img.loaded {
-  opacity: 1;
-}
-
-img:not(.loaded) {
-  opacity: 0;
-}
-
-/* Melhorar a responsividade do layout de grade */
-.lesson-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-}
-
-/* Animações otimizadas */
-.card-hover {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  will-change: transform, box-shadow;
-}
-
-.card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-/* Otimização para container de vídeo */
-.video-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-.video-container iframe,
-.video-container wistia-player {
-  width: 100%;
-  aspect-ratio: 16/9;
-}
-
-/* Para evitar layout shifts */
-* {
-  box-sizing: border-box;
-}
-
-/* Minimizar reflow para conteúdo dinâmico */
-.dynamic-content {
-  contain: content;
-}
-
-/* Melhorar a visualização em dispositivos móveis */
-@media (max-width: 768px) {
-  .container {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
   }
   
-  h1 {
-    font-size: 1.5rem;
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    border-radius: var(--radius);
+  }
+  
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* Wistia Video Player Custom Styles */
+  wistia-player {
+    border-radius: var(--radius);
+    overflow: hidden;
+    width: 100% !important;
   }
 }

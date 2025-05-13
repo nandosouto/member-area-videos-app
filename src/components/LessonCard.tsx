@@ -3,7 +3,6 @@ import React from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Lesson } from "@/types";
-import OptimizedImage from "./OptimizedImage";
 
 interface LessonCardProps {
   lesson: Lesson;
@@ -12,13 +11,12 @@ interface LessonCardProps {
 const LessonCard = ({ lesson }: LessonCardProps) => {
   return (
     <Link to={`/lesson/${lesson.id}`}>
-      <Card className="overflow-hidden card-hover h-full transition-all duration-300 hover:shadow-md">
+      <Card className="overflow-hidden card-hover">
         <div className="overflow-hidden h-48">
-          <OptimizedImage
+          <img
             src={lesson.coverImage}
             alt={lesson.title}
-            aspectRatio={16/9}
-            className="transition-transform duration-300 hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
           />
         </div>
         <CardContent className="p-4">
